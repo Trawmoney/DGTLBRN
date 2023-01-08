@@ -1,0 +1,150 @@
+const octopus = document.getElementById("octopus");
+
+const terminal = document.getElementById("terminal");
+
+const inputForm = document.getElementById("input-form");
+
+const input = document.getElementById("input");
+
+let items = [];
+
+let language = "English";
+
+// Add event listener to octopus
+
+octopus.addEventListener("click", function() {
+
+  terminal.style.display = "block";
+
+});
+
+// Add event listener to form
+
+inputForm.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  // Check if user is trying to create an account
+
+  if (input.value.startsWith("create account")) {
+
+    // Extract email, username, and password from user's input
+
+    const [email, username, password] = input.value
+
+      .replace("create account ", "")
+
+      .trim()
+
+      .split(" ");
+
+    console.log(`Creating account with email ${email}, username ${username}, and password ${password}`);
+
+    // Create user account
+
+    const user = {
+
+      email: email,
+
+      username: username,
+
+      password: password,
+
+      interactions: []
+
+    };
+
+    // Save user account to database
+
+    saveUser(user);
+
+  } else if (input.value.startsWith("login")) {
+
+    // Extract username and password from user's input
+
+    const [username, password] = input.value
+
+      .replace("login ", "")
+
+      .trim()
+
+      .split(" ");
+
+    console.log(`Logging in with username ${username} and password ${password}`);
+
+    // Attempt to log in
+
+    login(username, password, function(success) {
+
+      if (success) {
+
+        console.log("Login successful!");
+
+      } else {
+
+        console.log("Login failed. Incorrect username or password.");
+
+      }
+
+    });
+
+  } else {
+
+    // Add user's input to items array
+
+    items.push(input.value);
+
+    // Have octopus interact with user's input
+
+    octopusInteract(input.value);
+
+    // Save interaction to database
+
+    saveInteraction(input.value);
+
+  }
+
+  // Clear input field
+
+  input.value = "";
+
+  // Hide terminal
+
+  terminal.style.display = "none";
+
+});
+
+function octopusInteract(input) {
+
+  if (language === "English") {
+
+    // Octopus responds to English input
+
+    if (input === "hello") {
+
+      console.log("Octopus: Hello!");
+
+    } else if (input === "how are you") {
+
+      console.log("Octopus: I'm doing great, thanks for asking!");
+
+    } else {
+
+      console.log("Octopus: I'm not sure what you mean.");
+
+    }
+
+  } else if (language === "French") {
+
+    // Octopus responds to French input
+
+    if (input === "bonjour") {
+
+      console.log("Octopus: Bonjour!");
+
+    } else if (input === "comment vas-tu") {
+
+      console.log("Octopus: Je vais bien, merci de demander!");
+
+   
+
