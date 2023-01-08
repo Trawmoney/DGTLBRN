@@ -1,0 +1,70 @@
+const octopus = document.getElementById("octopus");
+
+const terminal = document.getElementById("terminal");
+
+const inputForm = document.getElementById("input-form");
+
+const input = document.getElementById("input");
+
+let items = [];
+
+// Add event listener to octopus
+
+octopus.addEventListener("click", function() {
+
+  terminal.style.display = "block";
+
+});
+
+// Add event listener to form
+
+inputForm.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  // Add user's input to items array
+
+  items.push(input.value);
+
+  // Clear input field
+
+  input.value = "";
+
+  // Hide terminal
+
+  terminal.style.display = "none";
+
+  // Have octopus interact with items
+
+  octopusInteract();
+
+});
+
+function octopusInteract() {
+
+  // Choose a random item from the items array
+
+  const item = items[Math.floor(Math.random() * items.length)];
+
+  // Do something with the item
+
+  console.log(`Octopus is interacting with ${item}`);
+
+}
+
+// Have octopus randomly wander around the octopus container
+
+function octopusWander() {
+
+  // Generate random x and y coordinates within the octopus container
+
+  const x = Math.random() * octopusContainer.offsetWidth;
+
+  const y = Math.random() * octopusContainer.offsetHeight;
+
+  // Set octopus's position to the random coordinates
+
+  octopus.style.top = `${y}px`;
+
+  octopus.style.left = `${x}px`;
+
