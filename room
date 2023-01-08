@@ -1,0 +1,18 @@
+<div id="octopus-container">
+
+  <img id="octopus" src="octopus.png" alt="Octopus">
+
+</div>
+
+<div id="terminal">
+
+  <form id="input-form">
+
+    <textarea id="input"></textarea>
+
+    <button type="submit">Submit</button>
+
+  </form>
+
+</div>
+
